@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="Money" default="build">
- <target name="build" depends="prepare,lint,phploc-ci,pdepend,phpmd-ci,phpcs-ci,phpcpd-ci,phpunit,phpdox"/>
+ <target name="build" depends="prepare,lint,phploc-ci,pdepend,phpmd-ci,phpcs-ci,phpcpd-ci,phpinfo,phpunit,phpdox"/>
 
  <target name="clean" unless="clean.done" description="Cleanup build artifacts">
   <delete dir="${basedir}/build/api"/>
@@ -125,6 +125,10 @@
    <arg path="${basedir}/build/logs/pmd-cpd.xml" />
    <arg path="${basedir}/src" />
   </exec>
+ </target>
+
+  <target name="phpinfo" depends="prepare" description="Run phpinfo">
+  <exec executable="${basedir}/build/tools/t.phar" failonerror="true" taskname="phpinfo"></exec>
  </target>
 
  <target name="phpunit" depends="prepare" description="Run unit tests with PHPUnit">
